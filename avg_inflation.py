@@ -13,10 +13,10 @@ def avg_inflation(start,end):
 
         for row in verdbolga_skjal:
             if (start==row[0]):# tegar start day byrjar
-                verd_b.append(row[1])
-                count=count+1# baetir verdbolgu vid shit[]
+                verd_b.append(row[1])# baetir verdbolgu vid verd_b[]
+                count=count+1
                 for row in verdbolga_skjal:
-                    verd_b.append(row[1]) #baetir verdbolgu vid shit[]
+                    verd_b.append(row[1]) #baetir verdbolgu vid verd_b[]
                     count=count+1
                     if (end==row[0]):
                         break      # heattir tegar naer end day
