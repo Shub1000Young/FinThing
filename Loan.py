@@ -1,13 +1,15 @@
+﻿from avg_inflation import *
+
 class Loan:
   'Common base class for all loans'
 
   def __init__(self, name, principle, i_rate, term, comp_freq, indexed):
 
-    #principle = amount borrowed
-	#i_rate = annual interest rate as percentage
-    #term = term of loan in months
-	#comp_freq = how ofter per year interest is compounded
-	#indexed = boolean, true if loan is indexed
+    #principle = Höfuðstóll
+	#i_rate = Árlegir Vextir
+    #term = lengd láns í mánuðum
+	#comp_freq = Hversu oft á ári vextir eru reiknaðir
+	#indexed = boolean, verðtrygging
 
     self.comp_freq = comp_freq
     self.name = name
@@ -16,25 +18,27 @@ class Loan:
     self.indexed = indexed
     self.term = term
 
-    if self.indexed: # add price index as a monthly interest
-        i_rate += 0.04 #placeholder for indexed constant function
+    if self.indexed: # Bæta við verðtryggingu
+        i_rate += avg_inflation("1990-1","2013-1") #Fasti sem verður fall seinna
 
-    self.r = self.i_rate / self.comp_freq #compound interest rarte
-    self.tot_loan = self.principle*(1.0 + self.r)**(self.comp_freq * (term/12)) # total loan
-    self.m_paymnt = self.tot_loan / self.term # montly payment
-    self.tot_int = self.tot_loan - self.principle # amount of total loan that is interest
-    self.m_int = (((1+self.i_rate/self.comp_freq)**(self.comp_freq/12))-1)*self.principle #interest due this month
+    self.r = self.i_rate / self.comp_freq #vaxtaprósenta fyrir vaxtatímabil
+    self.tot_loan = self.principle*(1.0 + self.r)**(self.comp_freq * (term/12)) # heildar upphæð sem á eftir að borga
+    self.m_paymnt = self.tot_loan / self.term # Mánaðarleg greiðsla
+    self.tot_int = self.tot_loan - self.principle # Hversu stór hluti heildarlánsins séu vextir
+    self.m_int = (((1+self.i_rate/self.comp_freq)**(self.comp_freq/12))-1)*self.principle #hlutfall vaxta næstu greiðslu
 
+#enduukvæmt fall sem keyrir í gegnum mánuðina með yfirgreiðslu og 	endurreiknar vexti hvert sinn
 def recalc(loan, t_elapsed, overpay_amt):
-	if t_elapsed <= 0:
+	if t_elapsed <= 0: # tíminn búinn, skila
 		return [loan.tot_loan, loan.tot_int, loan.principle]
-	else:
+	else: #gera nýtt lán (Python er call by value) og greiða það niður um einn mánuð
 		newloan = Loan(loan.name, loan.principle, loan.i_rate, loan.term, loan.comp_freq, loan.indexed)
 		principlePayment = loan.m_paymnt - loan.m_int + overpay_amt
 		newloan.principle -= principlePayment
 		newloan.term -= 1
 		return recalc(newloan, t_elapsed-1, overpay_amt)
 
+# Finna besta hagnað fyrir pening og tíma
 def evaluate(loans, months, amount):
 	totalSpent = months * amount
 	newtotal = []
