@@ -25,7 +25,7 @@ def avg_inflation(start,end):
                 return medalverdbolga
 
 
-x=avg_inflation("2007-12","2019-01")
-print x
-#x=avg_inflation("1990-05","2009-01")
+# example 
+#x=avg_inflation("2007-12","2019-01")
 #print x
+
