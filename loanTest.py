@@ -1,4 +1,4 @@
-from Loan import *
+ï»¿from Loan import *
 
 def loanTest(a, b, c, d, e, time, cash):
 	abc = [a, b, c]
@@ -9,14 +9,20 @@ def loanTest(a, b, c, d, e, time, cash):
 	
 	loans = [abc, bcd, cde, abcde, ace]
 	
-	print "Bera saman lánin " + a.name + " , " + b.name + " , " + c.name + " , " + d.name + " , " + e.name + "meğ şví ağ borga inn " + str(cash) + "krónur í " + str(time) + " mánuği\n"
+	print "Bera saman lÃ¡nin " + a.name + " , " + b.name + " , " + c.name + " , " + d.name + " , " + e.name + "meÃ° Ã¾vÃ­ aÃ° borga inn" + str(cash) + "krÃ³nur Ã­ " + str(time) + " mÃ¡nuÃ°i\n"
 	for i in range(len(loans)):
-		print "fyrir lánin: "
+		print "fyrir lÃ¡nin: "
 		for j in loans[i]:
 			print j.name + " , "
-		print "er best ağ greiğa niğur:"
+		print "er best aÃ° greiÃ°a niÃ°ur:"
 		test = evaluate(loans[i], time, cash)
-		print test[0] + " şar sem şú græğir " + str(test[1]) + " krónur í vaxtagreiğslur\n"
+		print test[0] + " Ã¾ar sem Ã¾Ãº grÃ¦Ã°ir " + str(test[1]) + " krÃ³nur Ã­ vaxtagreiÃ°slur\n"
 
 		
-	
+loan1 = Loan("hÃºsnÃ¦Ã°islÃ¡n", 40000000, 4, 240, 12, False)
+loan2 = Loan("BÃ­lalÃ¡n", 3000000, 5, 90, 12, False)
+loan3 = Loan("YfirdrÃ¡ttur", 500000, 15, 6, 12, False)
+loan4 = Loan("KÃºlulÃ¡n", 4000000, 4, 48, 12, False)
+loan5 = Loan("NÃ¡mslÃ¡n", 80000000, 2.3, 100, 12, False)
+loanTest(loan1, loan2, loan3, loan4, loan5, 5, 10000)
+

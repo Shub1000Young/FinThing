@@ -1,4 +1,4 @@
-﻿from avg_inflation import *
+from avg_inflation import *
 
 class Loan:
   'Common base class for all loans'
