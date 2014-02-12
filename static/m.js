@@ -13,6 +13,10 @@ var $ = jQuery,
 
         fieldsetClone.append('<a class="rmloan" href="#rmloan">Fjarlægja</a>')
 
+        fieldsetClone.find('input[type="radio"]')
+            .each(function () {
+                $(this).change();
+              });
         fieldsetClone.find('input')
             .each(function () {
                 $(this).val("");

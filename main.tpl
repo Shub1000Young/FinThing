@@ -3,12 +3,12 @@
 
   <h3>Settu þér sparnaðarmarkmið</h3>
 
-    <div class="textinput">
+    <div class="txtinp">
       <label for="amount">Upphæð:</label>
       <input id="amount" type="text" name="amount" value="" />
     </div>
 
-    <div class="fi_txt">
+    <div class="txtinp">
       <label for="monthlyAmount">Upphæð mánaðarlega:</label>
       <input id="monthlyAmount" type="text" name="monthlyAmount" value="" />
     </div>
@@ -19,7 +19,7 @@
 
 <form action="/lan" method="POST">
 
-  <div class="fi_txt">
+  <div class="txtinp">
     <label for="monthlyAmount">Mánaðarlega aukatekjur:</label>
     <input id="monthlyAmount" type="text" name="monthlyAmount" value="" />
   </div>
@@ -27,7 +27,7 @@
   <fieldset class="period">
     <h3>Tímabil:</h3>
 
-    <div class="fi_sel">
+    <div class="selinp">
       <label for="periodYears">Ár:</label>
       <select id="periodYears" name="periodYears">
         %for x in range(0, 41):
@@ -36,7 +36,7 @@
       </select>
     </div>
 
-    <div class="fi_sel">
+    <div class="selinp">
       <label for="periodMonths">Mánuðir:</label>
       <select id="periodMonths" name="periodMonths">
         %for x in range(0, 13):
@@ -50,11 +50,9 @@
   <fieldset class="inflation">
     <h3>Verðbólgutímabil:</h3>
 
-    <div class="row">
-      <span>frá</span>
-    </div>
+    <span>frá</span>
 
-    <div class="fi_sel">
+    <div class="selinp">
       <label for="inflYstart">Ár:</label>
       <select id="inflYstart" name="inflYstart">
         %for x in range(1990, 2014):
@@ -63,7 +61,7 @@
       </select>
     </div>
 
-    <div class="fi_sel">
+    <div class="selinp">
       <label for="inflMstart">Mán:</label>
       <select id="inflMstart" name="inflMstart">
         %for x in range(1, 13):
@@ -74,7 +72,7 @@
 
     <span>til</span>
 
-    <div class="fi_sel">
+    <div class="selinp">
       <label for="inflYend">Ár:</label>
       <select id="inflYend" name="inflYend">
         %for x in range(1990, 2014):
@@ -83,7 +81,7 @@
       </select>
     </div>
 
-    <div class="fi_sel">
+    <div class="selinp">
       <label for="inflMend">Mán:</label>
       <select id="inflMend" name="inflMend">
         %for x in range(1, 13):
@@ -100,34 +98,32 @@
 
     <h3>Lán</h3>
 
-    <div class="fi_txt">
-      <label for="lname">Nafn láns:</label>
-      <input id="lname" type="text" name="lname" value="" />
+    <div class="row">
+      <div class="txtinp">
+        <label for="lname">Nafn láns:</label>
+        <input id="lname" type="text" name="lname" value="" />
+      </div>
+
+      <div class="txtinp numinput">
+        <label for="i_rate">Vextir:</label>
+        <input id="i_rate" type="tel" name="i_rate" min="0" />
+      </div>
     </div>
 
-    <!-- ekki viss hvort við noum þetta -->
-    <!--div class="textinput">
-      <label for="amount">Eftirstöðvar láns:</label>
-      <input id="amount" type="text" name="amount" value="" />
-    </div-->
+    <div class="row">
+      <div class="txtinp numinput hashint">
+        <label for="term">Lánstími:</label>
+        <input id="term" type="tel" name="term" min="0" />
+        <span class="hint">í mánuðum</span>
+      </div>
 
-    <div class="textinput numinput">
-      <label for="i_rate">Vextir:</label>
-      <input id="i_rate" type="tel" name="i_rate" min="0" />
+      <div class="txtinp">
+        <label for="principle">Höfuðstóll:</label>
+        <input id="principle" type="text" name="principle" value="" />
+      </div>
     </div>
 
-    <div class="textinput numinput hashint">
-      <label for="term">Lánstími:</label>
-      <input id="term" type="tel" name="term" min="0" />
-      <span class="hint">í mánuðum</span>
-    </div>
-
-    <div class="fi_txt">
-      <label for="principle">Höfuðstóll:</label>
-      <input id="principle" type="text" name="principle" value="" />
-    </div>
-
-    <div class="fi_txt">
+    <div class="txtinp">
       <label for="compoundInt">Vaxtatímabil:</label>
       <input id="compoundInt" type="text" name="compoundInt" value="" />
     </div>
