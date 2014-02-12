@@ -1,5 +1,6 @@
 #coding=UTF-8
 import unittest
+import avg_inflation
 from Loan import *
 
 class testLoanFunctions(unittest.TestCase):
@@ -23,6 +24,11 @@ class testLoanFunctions(unittest.TestCase):
         #Loan2
         self.assertTrue(15177700 < testLoan2.tot_loan < 15177800)
         self.assertTrue(5177700 < testLoan2.tot_int < 5177800)
+
+    def test_avg_inflation(self):
+        self.assertEqual(avg_inflation('2007-12','2009-01'), 12.56)
+        self.assertEqual(avg_inflation('1990-01','2013-01'), 5.22)
+        self.assertNotEqual(avg_inflation('1990-01','2013-01'), 12)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2, exit=False)

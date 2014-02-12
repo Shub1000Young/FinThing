@@ -22,10 +22,4 @@ def avg_inflation(start,end):
                         break      # heattir tegar naer end day
                 verd_b = map(float,verd_b) #shit var listi med string en convertum yfir i float
                 medalverdbolga = (sum(verd_b)/count) # medalverdbolga fra start til end day
-                return medalverdbolga
-
-
-# example 
-#x=avg_inflation("2007-12","2019-01")
-#print x
-
+                return round(medalverdbolga, 2)
