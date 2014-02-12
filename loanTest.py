@@ -6,10 +6,12 @@ def loanTest(a, b, c, d, e, time, cash):
 	cde = [c, d, e]
 	abcde = [a, b, c, d, e]
 	ace = [a, c, e]
-	
+
 	loans = [abc, bcd, cde, abcde, ace]
-	
-	print "Bera saman lánin " + a.name + " , " + b.name + " , " + c.name + " , " + d.name + " , " + e.name + "með því að borga inn" + str(cash) + "krónur í " + str(time) + " mánuði\n"
+
+	print "Bera saman lánin " + a.name + " , " + b.name + " , " + c.name + " , " + d.name + " , " +
+	e.name + "með því að borga inn" + str(cash) + "krónur í " + str(time) + " mánuði\n"
+
 	for i in range(len(loans)):
 		print "fyrir lánin: "
 		for j in loans[i]:
@@ -18,7 +20,7 @@ def loanTest(a, b, c, d, e, time, cash):
 		test = evaluate(loans[i], time, cash)
 		print test[0] + " þar sem þú græðir " + str(test[1]) + " krónur í vaxtagreiðslur\n"
 
-		
+
 loan1 = Loan("húsnæðislán", 40000000, 4, 240, 12, False)
 loan2 = Loan("Bílalán", 3000000, 5, 90, 12, False)
 loan3 = Loan("Yfirdráttur", 500000, 15, 6, 12, False)

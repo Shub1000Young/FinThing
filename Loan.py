@@ -1,3 +1,4 @@
+#coding=UTF-8
 from avg_inflation import *
 
 class Loan:
@@ -40,8 +41,8 @@ def recalc(loan, t_elapsed, overpay_amt):
 		loanB.term -= 1 # minka tímabil
 		loanA = Loan("loanA", loanB.principle, loanB.i_rate*100.0, loanB.term, loanB.comp_freq, loanB.indexed) #LoanA er nýja lánið
 	return (loan.tot_int - loanA.tot_int - tot_intP) #skila heildar vaxtasparanaði
-	
-	
+
+
 # Finna besta hagnað fyrir pening og tíma
 def evaluate(loans, months, amount):
 	totalSpent = months * amount
