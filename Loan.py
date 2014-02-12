@@ -27,16 +27,6 @@ class Loan:
     self.tot_int = self.tot_loan - self.principle # Hversu stór hluti heildarlánsins séu vextir
     self.m_int = (((1+self.i_rate/self.comp_freq)**(self.comp_freq/12))-1)*self.principle #hlutfall vaxta næstu greiðslu
 
-#enduukvæmt fall sem keyrir í gegnum mánuðina með yfirgreiðslu og endurreiknar vexti hvert sinn
-# def recalc(loan, t_elapsed, overpay_amt):
-	# if t_elapsed <= 0: # tíminn búinn, skila
-		# return [loan.tot_loan, loan.tot_int, loan.principle]
-	# else: #gera nýtt lán (Python er call by value) og greiða það niður um einn mánuð
-		# newloan = Loan(loan.name, loan.principle, (loan.i_rate*100.0), loan.term, loan.comp_freq, loan.indexed)
-		# principlePayment = loan.m_paymnt - loan.m_int + overpay_amt
-		# newloan.principle -= principlePayment
-		# newloan.term -= 1
-		# return recalc(newloan, t_elapsed-1, overpay_amt)
 
 #lúppa sem fer í gegnum lánið, greiðir niður og reiknar vexti
 def recalc(loan, t_elapsed, overpay_amt):
@@ -66,4 +56,4 @@ def evaluate(loans, months, amount):
 
     #return {"nafn" : loans[index].name, "sparnadur" : maxprof - totalSpent, "vextir" : interestprof}
 
-	return [loans[index].name, maxprof, interestprof]
+	return [loans[index].name, maxprof, maxprof]
