@@ -1,0 +1,20 @@
+Tæknilegar upplýsingar
+Notast er við bottle web framework til þess að birta notendaviðmót í formi vefsíðu. fjarmal.py er keyrslu skráin sem keyrir upp development vefþjón sem hlustar á http://localhost:8080 - síðan sem birtist er form sem leyfir manni að setja inn upplýsingar á lán. í núverandi útgáfu þarf að  passa að “Tímabil” sé ekki lengra en lánstími. Þegar ýtt er á “reikna” hnappinn er búið til lána hlutur og reiknað út hvaða lán sé best að borga af. Einnig er hægt að keyra útbúa prufu í Loan.py það eina sem er gert í fjarmal.py er að keyra upp vefþjón, taka við inntaki og prenta niðurstöður.
+Uppsetning á Bottle/PIP
+Líklega er auðveldast að ná sér bara í PIP (Python Package Index) með því að sækja þessa skrá https://raw.github.com/pypa/pip/master/contrib/get-pip.py og keyra hana, þeas. “python get-pip.py” úr terminal eða command prompt. Einnig á að vera hægt setja PIP upp með package manager í Debian/Ubuntu “sudo apt-get install python-pip”. Nánar: http://www.pip-installer.org/en/latest/installing.html
+
+
+Windows:
+1.	Sækja: https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+2.	“python get-pip.py” keyrt úr command prompt.
+a.	Ef “C:\Python27\Scripts” er ekki í PATH breytunni viljum við bæta henni við eða gefa full path þegar við keyrum “easy_install” í næsta skrefi.
+3.	“easy_install -U bottle” keyrt úr command prompt.
+
+
+Ubuntu:
+1.	wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+2.	sudo python get-pip.py
+3.	sudo easy_install -U bottle
+
+
+Ef einhver vandamál koma upp við uppsetningu á PIP/bottle er hægt að hafa samband við Kára Yngvason, kariyngva@gmail.com eða í síma 848-1722.
