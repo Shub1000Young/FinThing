@@ -2,38 +2,47 @@
 #coding=UTF-8
 import savings
 def vaxtatrep(amount, term):
-    intrest=3.95  ############################################ virkar ekki alveg
-    trepreikn=savings.savings("vaxtaþrep",term,intrest,0)   #  reiknar alltaf med 4.25 % voxtum
+   interest=3.95  ############################################ virkar ekki alveg
+   trepreikn=savings.savings("vaxtaþrep",1,interest,0)   #  reiknar alltaf med 4.25 % voxtum
                                                             # nema nu tegar se heill hellingur inna reikn..
+   ## if (5000000 <= trepreikn.balance < 20000000):           #
+   ##     interest=4.25                                        #
+   ## elif (20000000 <= trepreikn.balance < 75000000):        #
+   ##     interest=4.55                                        #
+   ## elif (trepreikn.balance >=75000000):                    #
+   ##     interest=4.85
+   ## trepreikn.pay(amount)                                    #
+   for i in range (1,term)
     if (5000000 <= trepreikn.balance < 20000000):           #
-        intrest=4.25                                        #
+        interest=4.25                                        #
     elif (20000000 <= trepreikn.balance < 75000000):        #
-        intrest=4.55                                        #
+        interest=4.55                                        #
     elif (trepreikn.balance >=75000000):                    #
-        intrest=4.85
-    trepreikn.pay(amount)                                    #
-                                                            #
-    return round(trepreikn.balance,0)                       #
+        interest=4.85
+    
+    trepriekn.pay(amount/term)
+  
+   return round(trepreikn.balance,0)                       #
 ####################################################################### 
 
 def fastvaxtareikningur(amount, term): # aetti ad vera rett
-    intrest=0
+    interest=0
     if (term < 3):
-        intrest=3.92
+        interest=3.92
     if (3 <= term < 6):
-        intrest=4.91
+        interest=4.91
     if (6 <= term < 12):
-        intrest=5.06
+        interest=5.06
     if (term >= 12):
-        intrest=5.38
+        interest=5.38
 
-    fastvaxta=savings.savings("fastvaxtareikningur", term, intrest,0)
+    fastvaxta=savings.savings("fastvaxtareikningur", term, interest,0)
     fastvaxta.pay(amount)
     return round(fastvaxta.balance,0)
 
 def vaxtasproti(amount, term):  #aetti ad vera rett
-    intrest = 3.6
-    sprotireikningur=savings.savings("vaxtasproti",term, intrest,0)
+    interest = 3.6
+    sprotireikningur=savings.savings("vaxtasproti",term, interest,0)
     sprotireikningur.pay(amount)
     return round(sprotireikningur.balance)
 
