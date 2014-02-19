@@ -57,6 +57,7 @@ def form():
 
     #metum lánin sem slegin voru inn, evaluate skilar besta láninu
     res = evaluate(loans, totalPeriod, monthlyAmount)
+    loan,maxprofit = evaluate(loans, totalPeriod, monthlyAmount)
 
     #Fáum lista yfir greiðslur af upprunalega láninu og breyttu láni m.v. auka greiðslur.
     chartValues = overview(res[0], totalPeriod, monthlyAmount)
@@ -64,8 +65,14 @@ def form():
     #Hérna ættum við að reikna hversu mikið er sparað
     savingsAmount, accountType = calculatesavings(monthlyAmount, totalPeriod)
 
+    print maxprofit
+    print savingsAmount
+
+    if savingsAmount > maxprofit:
+        print maxprofit
+
     #Afhendum result sniðmátinu niðurstöðurnar úr evaluate og bestiReikningur
-    return template( 'results', loan = res, maxprof = res[1], chartValues = chartValues,
+    return template( 'results', loan = res, maxprof = maxprofit, chartValues = chartValues,
                         period = res[0].term, savingsAmount = savingsAmount, accountType = accountType)
 
 @route('/static/<filename>')
