@@ -1,8 +1,6 @@
 %include header
 
   <form action="/lan" method="POST">
-
-
     <fieldset class="period">
       <h2>Hversu mikið og hvað lengi?</h2>
       <p>Nú er komið að því að spara eða greiða upp lánið! Hversu mikið geturðu lagt til mánaðarlega og í hvað langan tíma?</p>
@@ -83,19 +81,6 @@
 
     <hr />
 
-    <fieldset class="savingsgoal">
-      <h2>Ertu með sparnaðarmarkmið?</h2>
-      <p>Hvað er það? Fyrir hverju æltaru að safna?</p>
-      <div class="txtinp hastype num">
-        <label for="savingsgoal">Upphæð:</label>
-        <input id="savingsgoal" type="text" name="savingsgoal" value="" />
-        <span class="type">kr.</span>
-      </div>
-    </fieldset>
-
-
-    <hr />
-
 
     <fieldset class="loan">
 
@@ -155,12 +140,21 @@
 
     </fieldset>
 
-    <p>Ertu með fleiri lán? <a class="addloan" href="/url">Já! Ég elska lán!</a></p>
-
+    <p class="center">Ertu með fleiri lán? <a class="addloan" href="/url">Já! Ég elska lán!</a></p>
 
     <input type="hidden" id="numloans" name="numloans" value="1" />
 
     <button type="submit">Reikna</button>
+  </form>
+
+  <form action="/sparnadur" method="POST">
+    <h2>Ertu með sparnaðarmarkmið?</h2>
+    <p>Hvað er það? Fyrir hverju æltaru að safna?</p>
+    <div class="txtinp hastype num">
+      <label for="savingsgoal">Upphæð:</label>
+      <input id="savingsgoal" type="text" name="savingsgoal" value="" />
+      <span class="type">kr.</span>
+    </div>
   </form>
 
 %include bottom

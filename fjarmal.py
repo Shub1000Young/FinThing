@@ -1,6 +1,8 @@
 from bottle import route, run, template, post, request, static_file
 from Loan import *
+from savings import *
 from avg_inflation import *
+from bestiReikningur import *
 
 @route('/')
 def index():
@@ -52,8 +54,13 @@ def form():
                 loans[i].i_rate += avg_inflation(inflPeriodStartKey, inflPeriodEndKey) / 100.0
 
 
+    #metum lánin sem slegin voru inn, evaluate skilar besta láninu
     res = evaluate(loans, totalPeriod, monthlyAmount)
+
+    #Fáum lista yfir greiðslur af upprunalega láninu og breyttu láni m.v. auka greiðslur.
     chartValues = overview(res[0], totalPeriod, monthlyAmount)
+
+    #Hérna ættum við að reikna hversu mikið er sparað
 
     return template('results', loan = res, maxprof = res[1], chartValues = chartValues, period = res[0].term)
 

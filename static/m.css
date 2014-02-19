@@ -26,14 +26,6 @@ body {
     font-family: 'Open Sans', Arial;
 }
 
-.inflationssssszz {
-    width: 50%;
-    margin: 0;
-    float: left;
-    -webkit-box-sizing:    border-box;
-    -moz-box-sizing:       border-box;
-    box-sizing:            border-box;
-}
 .inflation span,
 .inflation .selinp {
     display: inline-block;
@@ -41,6 +33,28 @@ body {
 
 .loan {
     clear: both;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    padding: 30px 0;
+}
+.rmloan {
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+
+.rmloan,
+.addloan {
+    border: 1px solid #ccc;
+    background-color: #2D69CC;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 4px;
+    color: #f2f2f2;
+    text-decoration: none;
+    -webkit-box-shadow: inset 3px 3px 45px 0px rgba(0,0,0, .5);
+    box-shadow:         inset 3px 3px 45px 0px rgba(0,0,0, .5);
+    text-shadow: 1px 1px 0 rgba(0,0,0, .5);
 }
 
 .row {
@@ -96,7 +110,6 @@ select,
 }
 .txtinp input:focus,
 .txtinp input:active {
-    /*border-color: #000;*/
     outline: 0;
 }
 
@@ -269,4 +282,13 @@ fieldset {
 .radioinp li {
     display: inline-block;
     margin-right: 30px;
+}
+
+.center {
+    text-align: center;
+    padding: 20px;
+}
+
+.chartData {
+    display: none;
 }
