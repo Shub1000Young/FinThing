@@ -1,3 +1,4 @@
+#coding=UTF-8
 from bottle import route, run, template, post, request, static_file
 from Loan import *
 from savings import *
@@ -61,8 +62,11 @@ def form():
     chartValues = overview(res[0], totalPeriod, monthlyAmount)
 
     #Hérna ættum við að reikna hversu mikið er sparað
+    savingsAmount, accountType = calculatesavings(monthlyAmount, totalPeriod)
 
-    return template('results', loan = res, maxprof = res[1], chartValues = chartValues, period = res[0].term)
+    #Afhendum result sniðmátinu niðurstöðurnar úr evaluate og bestiReikningur
+    return template( 'results', loan = res, maxprof = res[1], chartValues = chartValues,
+                        period = res[0].term, savingsAmount = savingsAmount, accountType = accountType)
 
 @route('/static/<filename>')
 def server_static(filename):

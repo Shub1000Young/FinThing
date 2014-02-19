@@ -3,6 +3,8 @@
 <div>
     <p>{{loan[0].name}}</p>
     <p>{{maxprof}}</p>
+    <p>{{savingsAmount}}</p>
+    <p>{{accountType}}</p>
 
     <div class="chartData">
         <ul class="original">

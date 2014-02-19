@@ -12,18 +12,18 @@ def vaxtatrep(amount, term):
    ## elif (trepreikn.balance >=75000000):                    #
    ##     interest=4.85
    ## trepreikn.pay(amount)                                    #
-   for i in range (1,term)
+   for i in range (1,term):
     if (5000000 <= trepreikn.balance < 20000000):           #
         interest=4.25                                        #
     elif (20000000 <= trepreikn.balance < 75000000):        #
         interest=4.55                                        #
     elif (trepreikn.balance >=75000000):                    #
         interest=4.85
-    
-    trepriekn.pay(amount/term)
-  
+
+    trepreikn.pay(amount/term)
+
    return round(trepreikn.balance,0)                       #
-####################################################################### 
+#######################################################################
 
 def fastvaxtareikningur(amount, term): # aetti ad vera rett
     interest=0
