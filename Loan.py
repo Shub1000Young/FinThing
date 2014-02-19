@@ -45,16 +45,35 @@ def recalc(loan, t_elapsed, overpay_amt):
 
 # Finna besta hagnað fyrir pening og tíma
 def evaluate(loans, months, amount):
-	totalSpent = months * amount
-	newtotal = []
-	maxprof = 0
-	index = 0
+	totalTime = months
+	intermedLoans = [] #millibreyta ef að best er að greiða fyrst eitt lán svo annað
+	newtotal = 0 #millibreyta með heildarsparnað núverandi láns
+	maxprof = 0 #mesti sparnaður
+	index = 0	# númer láns sem á að greiða niður
+	#hér athugum við lán sem eru styttri en sparnaðartímabilið okkar
 	for i in range(len(loans)):
-		newtotal= recalc(loans[i], months, amount)
+		if loans[i].term <= months:
+			intermaxprof = 0
+			interintex = 0
+			intermonths = loans[i].term-1
+			for j in range(len(loans)):	
+				newtotal = recalc(loans[j], intermonths, amount)
+				if newtotal > intermaxprof:
+					intermaxprof = newtotal
+					interindex = j
+			if interindex == i: #ef stutta lánið er best á þessum tíma
+				intermedLoans.append([loans[i], intermaxprof])
+				totalTime -= (loans[i].term -1)
+			loans.pop(i)
+	
+	#skoðar öll lán sem eru stærri en spartímabilið okkar
+	for i in range(len(loans)):
+		newtotal= recalc(loans[i], totalTime, amount)
 		if newtotal > maxprof:
 			maxprof = newtotal
 			index = i
 
     #return {"nafn" : loans[index].name, "sparnadur" : maxprof - totalSpent, "vextir" : interestprof}
-
+	if len(intermedLoans) != 0:
+		return [intermedLoans, loans[index].name, maxprof]
 	return [loans[index].name, maxprof, maxprof]
