@@ -1,9 +1,32 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/OpenSans-Regular-webfont.eot');
+    src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'icomoon';
+    src:url('fonts/icomoon.eot?-v1a1y5');
+    src:url('fonts/icomoon.eot?#iefix-v1a1y5') format('embedded-opentype'),
+        url('fonts/icomoon.woff?-v1a1y5') format('woff'),
+        url('fonts/icomoon.ttf?-v1a1y5') format('truetype'),
+        url('fonts/icomoon.svg?-v1a1y5#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     width: 70%;
     margin: 0 auto;
+    font-size: 14px;
+    font-family: 'Open Sans', Arial;
 }
-.period,
-.inflation {
+
+.inflationssssszz {
     width: 50%;
     margin: 0;
     float: left;
@@ -25,16 +48,225 @@ body {
 }
 .row .txtinp {
     float: left;
-    width: 50%;
+}
+.w80,
+.w40,
+.w30 {
+    margin-right: 30px;
+}
+.w40 input,
+.w30 input {
+    width: 55px;
+    text-align: center;
 }
 
+.w40 input {
+    width: 40px;
+}
+.w80 input {
+    width: 120px;
+}
+
+.selinp,
+.txtinp {
+    margin: 0 30px 30px 0;
+}
+
+
+select,
 .txtinp input {
-    width: 250px;
-    padding: 5px 10px;
+    font-size: 1.07em;
+    padding: 10px;
+    max-height: 39px;
+    -webkit-box-sizing:    border-box;
+    -moz-box-sizing:       border-box;
+    box-sizing:            border-box;
 }
 
 .txtinp label {
     width: 6em;
     text-align: left;
     display: inline-block;
+}
+
+select,
+.txtinp input {
+    border-radius: 4px;
+    border: 1px solid #d7d7d7;
+}
+.txtinp input:focus,
+.txtinp input:active {
+    /*border-color: #000;*/
+    outline: 0;
+}
+
+
+fieldset {
+    border: 0;
+}
+.type,
+.txtinp label {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 9px 10px;
+    width: auto;
+    margin-right: -0.5em;
+    vertical-align: middle;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #101010;
+}
+.txtinp input {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    vertical-align: middle;
+}
+
+.type {
+    display: inline-block;
+    margin: 0 0 0 -0.5em;
+    border-radius: 0;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 9px 3px;
+}
+
+.txtinp.num .plus,
+.txtinp.num .minus {
+    color: transparent;
+    background-color: #2D69CC;
+    margin-right: -5px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    padding: 9px 0 6px;
+    vertical-align: middle;
+    width: 19px;
+    text-align: center;
+    overflow: hidden;
+}
+.plus:before,
+.minus:before {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    color: #fff;
+    font-size: 1.35em;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.plus:before {
+    content: "\e602";
+}
+.minus:before {
+    content: "\e603";
+}
+.txtinp.num .plus {
+    margin: 0 0 0 -5px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.icon-plus2:before {
+    content: "\e602";
+}
+.icon-minus2:before {
+    content: "\e603";
+}
+.icon-info:before {
+    content: "\e604";
+}
+.icon-arrow-left:before {
+    content: "\e600";
+}
+.icon-play:before {
+    content: "\e601";
+}
+
+
+.hashint {
+    position: relative;
+    float: left;
+    padding-right: 30px;
+}
+.txtinp.hasops input,
+.txtinp.hastype input {
+    border-radius: 0;
+}
+.hashint .hint span {
+    position: absolute;
+    right: -110px;
+    top: 7px;
+    width: 82px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 6px;
+    display: none;
+    padding: 5px 8px 6px;
+    color: #fff;
+    z-index: 10;
+
+}
+.hashint .hint:active span,
+.hashint .hint:focus span,
+.hashint .hint:hover span {
+    display: block;
+}
+.hashint .hint {
+
+}
+.hashint .hint:before {
+    content: "\e604";
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 1.357em;
+    display: block;
+
+    position: absolute;
+    top: 12px;
+    right: 0;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hashint .hint span:before {
+    content: "\e600";
+    font-family: 'icomoon';
+    display: block;
+    color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    font-size: 23px;
+    left: -16px;
+    top: 3px;
+}
+.radioinp {
+    clear: both;
+    padding: 0;
+    margin: 0;
+}
+.radioinp ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.radioinp li {
+    display: inline-block;
+    margin-right: 30px;
 }

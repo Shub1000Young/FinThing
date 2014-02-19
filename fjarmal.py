@@ -54,4 +54,8 @@ def form():
 def server_static(filename):
     return static_file(filename, root='./static')
 
+@route('/static/<path:path>')
+def callback(path):
+    return static_file(path, root='./static')
+
 run(host='localhost', port=8080)

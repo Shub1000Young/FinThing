@@ -1,154 +1,152 @@
 %include header
-<!--form action="/spara" method="POST">
 
-  <h3>Settu þér sparnaðarmarkmið</h3>
-
-    <div class="txtinp">
-      <label for="amount">Upphæð:</label>
-      <input id="amount" type="text" name="amount" value="" />
-    </div>
-
-    <div class="txtinp">
-      <label for="monthlyAmount">Upphæð mánaðarlega:</label>
-      <input id="monthlyAmount" type="text" name="monthlyAmount" value="" />
-    </div>
-
-    <button type="submit">Reikna</button>
-
-</form-->
-
-<form action="/lan" method="POST">
-
-  <div class="txtinp">
-    <label for="monthlyAmount">Mánaðarlega aukatekjur:</label>
-    <input id="monthlyAmount" type="text" name="monthlyAmount" value="" />
-  </div>
-
-  <fieldset class="period">
-    <h3>Tímabil:</h3>
-
-    <div class="selinp">
-      <label for="periodYears">Ár:</label>
-      <select id="periodYears" name="periodYears">
-        %for x in range(0, 41):
-          <option>{{x}}</option>
-        %end
-      </select>
-    </div>
-
-    <div class="selinp">
-      <label for="periodMonths">Mánuðir:</label>
-      <select id="periodMonths" name="periodMonths">
-        %for x in range(0, 13):
-          <option>{{x}}</option>
-        %end
-      </select>
-    </div>
-
-  </fieldset>
-
-  <fieldset class="inflation">
-    <h3>Verðbólgutímabil:</h3>
-
-    <span>frá</span>
-
-    <div class="selinp">
-      <label for="inflYstart">Ár:</label>
-      <select id="inflYstart" name="inflYstart">
-        %for x in range(1990, 2014):
-        <option>{{x}}</option>
-        %end
-      </select>
-    </div>
-
-    <div class="selinp">
-      <label for="inflMstart">Mán:</label>
-      <select id="inflMstart" name="inflMstart">
-        %for x in range(1, 13):
-        <option>{{x}}</option>
-        %end
-      </select>
-    </div>
-
-    <span>til</span>
-
-    <div class="selinp">
-      <label for="inflYend">Ár:</label>
-      <select id="inflYend" name="inflYend">
-        %for x in range(1990, 2014):
-        <option selected>{{x}}</option>
-        %end
-      </select>
-    </div>
-
-    <div class="selinp">
-      <label for="inflMend">Mán:</label>
-      <select id="inflMend" name="inflMend">
-        %for x in range(1, 13):
-        <option>{{x}}</option>
-        %end
-      </select>
-    </div>
-
-  </fieldset>
+  <form action="/lan" method="POST">
 
 
+    <fieldset class="period">
+      <h2>Hversu mikið og hvað lengi?</h2>
+      <p>Nú er komið að því að spara eða greiða upp lánið! Hversu mikið geturðu lagt til mánaðarlega og í hvað langan tíma?</p>
 
-  <fieldset class="loan">
+      <div class="row">
 
-    <h3>Lán</h3>
+        <div class="txtinp num w80">
+          <label for="monthlyAmount">Mánaðarlega upphæð</label>
+          <input id="monthlyAmount" type="text" name="monthlyAmount" value="" />
+        </div>
 
-    <div class="row">
-      <div class="txtinp">
-        <label for="lname">Nafn láns:</label>
-        <input id="lname" type="text" name="lname" value="" />
+        <div class="txtinp num hasops w40">
+          <label for="periodYears">Ár</label>
+          <span class="minus">-</span>
+          <input id="periodYears" type="text" name="periodYears" value="0" />
+          <span class="plus">+</span>
+        </div>
+
+        <div class="txtinp num hasops w40">
+          <label for="periodMonths">Mánuðir</label>
+          <span class="minus">-</span>
+          <input id="periodMonths" type="text" name="periodMonths" value="1" />
+          <span class="plus">+</span>
+        </div>
       </div>
 
-      <div class="txtinp numinput">
-        <label for="i_rate">Vextir:</label>
-        <input id="i_rate" type="tel" name="i_rate" min="0" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="txtinp numinput hashint">
-        <label for="term">Lánstími:</label>
-        <input id="term" type="tel" name="term" min="0" />
-        <span class="hint">í mánuðum</span>
-      </div>
-
-      <div class="txtinp">
-        <label for="principle">Höfuðstóll:</label>
-        <input id="principle" type="text" name="principle" value="" />
-      </div>
-    </div>
-
-    <div class="txtinp">
-      <label for="compoundInt">Vaxtatímabil:</label>
-      <input id="compoundInt" type="text" name="compoundInt" value="" />
-    </div>
-
-    <fieldset class="fi_rdo">
-      <h4>Lán er verðtryggt?</h4>
-      <ul>
-        <li>
-          <input id="verdtryggt" type="radio" name="indexed" value="1" />
-          <label for="verdtryggt">Já</label>
-        </li>
-        <li>
-          <input id="overdtryggt" type="radio" name="indexed" value="0" />
-          <label for="overdtryggt">Nei</label>
-        </li>
-      </ul>
     </fieldset>
 
-  </fieldset>
+    <hr />
 
-  <a class="addloan" href="/url">Ertu með fleiri lán?</a>
+    <fieldset class="inflation">
+      <h2>Verðbólgutímabil</h2>
+      <p>Það eina sem við gerum er að taka meðaltal af verðbólgunni fyrir tíambilið sem þú velur.</p>
 
-  <input type="hidden" id="numloans" name="numloans" value="1" />
+      <span>frá</span>
+      <div class="selinp">
+        <select id="inflYstart" name="inflYstart">
+          %for x in range(1990, 2014):
+          <option>{{x}}</option>
+          %end
+        </select>
+      </div>
 
-  <button type="submit">Reikna</button>
-</form>
+      <div class="selinp">
+        <select id="inflMstart" name="inflMstart">
+          %for x in range(1, 13):
+          <option>{{x}}</option>
+          %end
+        </select>
+      </div>
+
+      <span>til</span>
+
+      <div class="selinp">
+        <select id="inflYend" name="inflYend">
+          %for x in range(1990, 2014):
+          <option selected>{{x}}</option>
+          %end
+        </select>
+      </div>
+
+      <div class="selinp">
+        <select id="inflMend" name="inflMend">
+          %for x in range(1, 13):
+          <option>{{x}}</option>
+          %end
+        </select>
+      </div>
+
+      <p>Nú nú, heldurðu að þú sért betur til þess fallin(n) að spá fyrir um verðbólguna? Gjörðu svo vel!</p>
+      <div class="txtinp num hastype w30">
+        <label for="inflation">Verðbólga</label>
+        <input id="inflation" type="text" name="inflation" value="" />
+        <span class="type"><span>%</span></span>
+      </div>
+
+    </fieldset>
+
+    <hr />
+
+    <fieldset class="loan">
+
+      <h2>Lán</h2>
+      <p>Segðu mér meira! Hvernig lán ertu með? Ertu með mörg lán?</p>
+
+      <div class="row ror">
+        <div class="txtinp">
+          <label for="lname">Nafn láns</label>
+          <input id="lname" type="text" name="lname" value="" />
+        </div>
+
+        <div class="txtinp hastype num">
+          <label for="principle">Höfuðstóll</label>
+          <input id="principle" type="text" name="principle" value="" />
+          <span class="type"><span>kr.</span></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="txtinp num hashint w30">
+          <label for="term">Lánstími</label>
+          <input id="term" type="text" name="term" value="12" />
+          <span class="hint"><span>í mánuðum</span></span>
+        </div>
+
+        <div class="txtinp num hashint w30">
+          <label for="compoundInt">Vaxtatímabil</label>
+          <input id="compoundInt" type="text" name="compoundInt" value="12" />
+          <span class="hint"><span>í mánuðum</span></span>
+        </div>
+
+        <div class="txtinp num hasops w30">
+          <label for="i_rate">Vextir</label>
+          <span class="minus">-</span>
+          <input id="i_rate" type="text" name="i_rate" value="1" />
+          <span class="plus">+</span>
+        </div>
+      </div>
+
+
+      <fieldset class="radioinp">
+        <h4>Lán er verðtryggt?</h4>
+
+        <ul>
+          <li>
+            <input id="verdtryggt" type="radio" name="indexedRadio" value="1" />
+            <label for="verdtryggt">Já</label>
+          </li>
+          <li>
+            <input id="overdtryggt" type="radio" name="indexedRadio" value="0" />
+            <label for="overdtryggt">Nei</label>
+          </li>
+        </ul>
+
+      </fieldset>
+
+    </fieldset>
+
+    <p>Ertu með fleiri lán? <a class="addloan" href="/url">Já! Ég elska lán!</a></p>
+
+    <input type="hidden" id="radioDummy" name="indexed" value="" />
+    <input type="hidden" id="numloans" name="numloans" value="1" />
+
+    <button type="submit">Reikna</button>
+  </form>
 
 %include bottom
