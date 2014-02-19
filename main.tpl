@@ -83,6 +83,20 @@
 
     <hr />
 
+    <fieldset class="savingsgoal">
+      <h2>Ertu með sparnaðarmarkmið?</h2>
+      <p>Hvað er það? Fyrir hverju æltaru að safna?</p>
+      <div class="txtinp hastype num">
+        <label for="savingsgoal">Upphæð:</label>
+        <input id="savingsgoal" type="text" name="savingsgoal" value="" />
+        <span class="type">kr.</span>
+      </div>
+    </fieldset>
+
+
+    <hr />
+
+
     <fieldset class="loan">
 
       <h2>Lán</h2>
@@ -128,22 +142,22 @@
 
         <ul>
           <li>
-            <input id="verdtryggt" type="radio" name="indexedRadio" value="1" />
+            <input id="verdtryggt" type="radio" name="indexedRadio" value="True" />
             <label for="verdtryggt">Já</label>
           </li>
           <li>
-            <input id="overdtryggt" type="radio" name="indexedRadio" value="0" />
+            <input id="overdtryggt" type="radio" name="indexedRadio" value="False" />
             <label for="overdtryggt">Nei</label>
           </li>
         </ul>
-
+        <input type="hidden" id="radioDummy" name="indexed" value="" />
       </fieldset>
 
     </fieldset>
 
     <p>Ertu með fleiri lán? <a class="addloan" href="/url">Já! Ég elska lán!</a></p>
 
-    <input type="hidden" id="radioDummy" name="indexed" value="" />
+
     <input type="hidden" id="numloans" name="numloans" value="1" />
 
     <button type="submit">Reikna</button>

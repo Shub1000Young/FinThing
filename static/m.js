@@ -36,7 +36,7 @@ var $ = jQuery,
 
         //Breytum name og id á input
         fieldsetClone
-            .find('.radioinp input')
+            .find('.radioinp input[type="radio"]')
                 .each(function () {
                     var radio = $(this),
                         currId = radio.attr('id'),
@@ -49,7 +49,7 @@ var $ = jQuery,
 
         //Hreinsum textareiti
         fieldsetClone
-            .find('input[type="text"]')
+            .find('input[type="text"], #radioDummy')
                 .each(function () {
                     $(this).val('');
                   });
@@ -60,14 +60,11 @@ var $ = jQuery,
 
 
     bdy.on('change', '.radioinp input', function (e) {
-        var allRadios = $('.radioinp input:checked'),
-            allRadioValues = [];
+        var radioBtn = $(this),
+            radioParent = radioBtn.parents('.radioinp'),
+            radioDummy = radioParent.find('#radioDummy');
 
-        allRadios.each(function () {
-            allRadioValues.push($(this).val())
-          });
-
-        //$('#radioDummy').val()
+        radioDummy.val(radioBtn.val())
       });
 
     //Bindum smell á fjarlægja hnapp til þess að fjarlægja lán.
@@ -115,7 +112,58 @@ var $ = jQuery,
                 }
             }
         });
-
     });
+
+    var originalNode = $('.original li'),
+        newlistNode = $('.newlist li'),
+        periodNode = parseInt($('.period').text(), 10),
+        m_paymnt = parseInt($('.m_paymnt').text(), 10),
+        periodData = [],
+        originalData = [],
+        newlistData = [];
+
+        for (var i=0; i<periodNode; i++)
+        {
+          periodData[i] = i + '';
+        }
+
+        for (var i=0; i<originalNode.length; i++)
+        {
+            newlistData[i] = parseInt(newlistNode.eq(i).text());
+            originalData[i] = parseInt(originalNode.eq(i).text());
+        }
+
+  var lineChartData = {
+      labels : periodData,
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : originalData
+        },
+        {
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : newlistData
+        }
+      ]
+    };
+    var options = {
+    scaleOverride: true,
+    scaleSteps : periodNode,
+    //Number - The value jump in the hard coded scale
+    scaleStepWidth : m_paymnt,
+    //Number - The scale starting value
+    scaleStartValue : 0,
+    bezierCurve: false
+    }
+    //if convas.length > 0 then:
+  var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData, options);
+  //var canvasElm = $('#canvas').getContext("2d");
+  //var myLine = new Chart(canvasElm).Line(lineChartData);
 
 })($);

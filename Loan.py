@@ -19,8 +19,8 @@ class Loan:
     self.indexed = indexed
     self.term = term
 
-    if self.indexed: # Bæta við verðtryggingu
-        i_rate += avg_inflation("1990-1","2013-1") #Fasti sem verður fall seinna
+    #if self.indexed: # Bæta við verðtryggingu
+    #i_rate += avg_inflation("1990-1","2013-1") #Fasti sem verður fall seinna
 
     self.r = self.i_rate / self.comp_freq #vaxtaprósenta fyrir vaxtatímabil
     self.tot_loan = (((self.r)*self.principle)/(1-(1+(self.r))**-self.term))*self.term # heildar upphæð sem á eftir að borga
@@ -57,7 +57,7 @@ def evaluate(loans, months, amount):
 			intermaxprof = 0
 			interintex = 0
 			intermonths = loans[i].term-1
-			for j in range(len(loans)):	
+			for j in range(len(loans)):
 				newtotal = recalc(loans[j], intermonths, amount)
 				if newtotal > intermaxprof:
 					intermaxprof = newtotal
@@ -66,7 +66,7 @@ def evaluate(loans, months, amount):
 				intermedLoans.append([loans[i], intermaxprof])
 				totalTime -= (loans[i].term -1)
 			loans.pop(i)
-	
+
 	#skoðar öll lán sem eru stærri en spartímabilið okkar
 	for i in range(len(loans)):
 		newtotal= recalc(loans[i], totalTime, amount)
@@ -77,7 +77,8 @@ def evaluate(loans, months, amount):
     #return {"nafn" : loans[index].name, "sparnadur" : maxprof - totalSpent, "vextir" : interestprof}
 	if len(intermedLoans) != 0:
 		return [intermedLoans, loans[index].name, maxprof]
-	return [loans[index].name, maxprof, maxprof]
+
+	return [loans[index], maxprof]
 
 #þetta fall skilar tveimur listum af mánaðarlegum eftirstöðvum fyrir línurit
 def overview(loan, t_elapsed, overpay_amt):
@@ -100,7 +101,7 @@ def overview(loan, t_elapsed, overpay_amt):
 		if overpayTime > 0:
 			principlePayment = loanA.m_paymnt - loanA.m_int + overpay_amt
 			overpayTime -=1
-		else:	
+		else:
 			principlePayment = loanA.m_paymnt - loanA.m_int
 		loanB.principle -= principlePayment #greiða niður höfuðstól
 		loanB.term -= 1 # minka tímabil

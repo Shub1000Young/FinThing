@@ -1,5 +1,6 @@
 from bottle import route, run, template, post, request, static_file
 from Loan import *
+from avg_inflation import *
 
 @route('/')
 def index():
@@ -26,8 +27,10 @@ def form():
     inflateMstart = request.forms.get('inflMstart')
     inflateYend = request.forms.get('inflYend')
     inflateMend = request.forms.get('inflMend')
-    inflPeriodStartKey = inflateYstart + "-" + inflateMstart
-    inflPeriodEndKey = inflateYend + "-" + inflateMend
+    inflateMstartZero =  "0" if int(inflateMstart) < 10 else ""
+    inflateMendZero =  "0" if int(inflateMend) < 10 else ""
+    inflPeriodStartKey = inflateYstart + "-" + inflateMstartZero + inflateMstart
+    inflPeriodEndKey = inflateYend + "-" + inflateMendZero + inflateMend
 
     #we're using .getall so these are lists
     name = request.forms.getall('lname')
@@ -36,19 +39,23 @@ def form():
     term = request.forms.getall('term')
     comp_freq = request.forms.getall('compoundInt')
     indexed = request.forms.getall('indexed')
+    userInflation = request.forms.get('inflation')
     loans = []
 
     #we assume all the lists are equally long, iterate over them and create a list of loans
-    #loans.append( Loan( name[i], float(principle[i]), float(i_rate[i]), int(term[i]), int(comp_freq[i]), False ) )
-
     for i in range(0, len(principle)):
-        loans.append( Loan( name[i], float(principle[i]), float(i_rate[i]), int(term[i]), int(comp_freq[i]), False ) )
+        loans.append( Loan( name[i], float(principle[i]), float(i_rate[i]), int(term[i]), int(comp_freq[i]), bool(indexed[i]) ) )
+        if loans[i].indexed:
+            if len(userInflation) > 0:
+                loans[i].i_rate += float(userInflation) / 100.0
+            else:
+                loans[i].i_rate += avg_inflation(inflPeriodStartKey, inflPeriodEndKey) / 100.0
 
-    #loans.append( Loan( "nafn", 3000000, 4, 24, 12, True ) )
 
     res = evaluate(loans, totalPeriod, monthlyAmount)
+    chartValues = overview(res[0], totalPeriod, monthlyAmount)
 
-    return template('results', loanList=res)
+    return template('results', loan = res, maxprof = res[1], chartValues = chartValues, period = res[0].term)
 
 @route('/static/<filename>')
 def server_static(filename):
