@@ -83,6 +83,11 @@ var $ = jQuery,
         }
     });
 
+    $('.num input').on('keyup', function (e) {
+        //$(this).val($(this).val().toString().prettynum());
+        ;;;window.console&&console.log( [$(this).val().toString()] );
+      });
+
     //Bindum smelli á plús/mínus hnappa til að hækka/lækka gildi í tölureitum.
     $('.num').each(function() {
         var num = $(this),
@@ -165,5 +170,4 @@ var $ = jQuery,
   var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData, options);
   //var canvasElm = $('#canvas').getContext("2d");
   //var myLine = new Chart(canvasElm).Line(lineChartData);
-
 })($);

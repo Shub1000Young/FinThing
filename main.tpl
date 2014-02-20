@@ -1,5 +1,11 @@
 %include header
 
+
+  <h1>Sparnaður eða sparnaður</h1>
+
+  <h2>Spara með hefðbundnum hætti eða spara með því að borga meira...ha?</h2>
+  <p>Hér geturðu reinka út hvað þú græðir á því að greiða aukalega af lánunum þínum eða hvort það sé bara betra að leggja þessa auka peninga inn á reikning.</p>
+
   <form action="/lan" method="POST">
     <fieldset class="period">
       <h2>Hversu mikið og hvað lengi?</h2>
@@ -35,14 +41,7 @@
       <h2>Verðbólgutímabil</h2>
       <p>Það eina sem við gerum er að taka meðaltal af verðbólgunni fyrir tíambilið sem þú velur.</p>
 
-      <span>frá</span>
-      <div class="selinp">
-        <select id="inflYstart" name="inflYstart">
-          %for x in range(1990, 2014):
-          <option>{{x}}</option>
-          %end
-        </select>
-      </div>
+      <span>Frá</span>
 
       <div class="selinp">
         <select id="inflMstart" name="inflMstart">
@@ -52,20 +51,30 @@
         </select>
       </div>
 
-      <span>til</span>
+      <div class="selinp">
+        <select id="inflYstart" name="inflYstart">
+          %for x in range(1990, 2014):
+          <option>{{x}}</option>
+          %end
+        </select>
+      </div>
+
+
+      <span>Til</span>
 
       <div class="selinp">
-        <select id="inflYend" name="inflYend">
-          %for x in range(1990, 2014):
-          <option selected>{{x}}</option>
+        <select id="inflMend" name="inflMend">
+          %months = ["Janúar", "Febrúar", "Mars", "Apríl", "Maí", "Júní", "Júlí", "Ágúst", "September", "Október", "Nóvember", "December"]
+          %for x in range(1, 13):
+          <option value="{{x}}">{{months[x-1]}}</option>
           %end
         </select>
       </div>
 
       <div class="selinp">
-        <select id="inflMend" name="inflMend">
-          %for x in range(1, 13):
-          <option>{{x}}</option>
+        <select id="inflYend" name="inflYend">
+          %for x in range(1990, 2014):
+          <option selected>{{x}}</option>
           %end
         </select>
       </div>
@@ -144,17 +153,40 @@
 
     <input type="hidden" id="numloans" name="numloans" value="1" />
 
-    <button type="submit">Reikna</button>
+    <button type="submit">Og hvað? Hvað sparast mikið?</button>
   </form>
 
+
+  <h2>Ertu rosa einfalt eintak og ert ekki með nein lán?</h2>
+  <p>Settu inn það sparnaðarmarkmið, hvað þú getur sparað mikið á mánuði og við segjum þér hvað það tekur langan tíma að ná markmiðinu!</p>
   <form action="/sparnadur" method="POST">
     <h2>Ertu með sparnaðarmarkmið?</h2>
     <p>Hvað er það? Fyrir hverju æltaru að safna?</p>
-    <div class="txtinp hastype num">
-      <label for="savingsgoal">Upphæð:</label>
-      <input id="savingsgoal" type="text" name="savingsgoal" value="" />
-      <span class="type">kr.</span>
+
+    <div class="row">
+      <div class="txtinp hastype num">
+        <label for="savingsgoal">Markmið:</label>
+        <input id="savingsgoal" type="text" name="savingsgoal" value="" />
+        <span class="type">kr.</span>
+      </div>
+
+      <div class="txtinp hastype hashint">
+        <label for="xxx">Upphæð:</label>
+        <input id="xxx" type="text" name="name" value="" />
+        <span class="type">kr.</span>
+        <span class="hint"><span>mánaðarlega</span></span>
+      </div>
+
+      <div class="txtinp num hastyp w30">
+        <label for="userSavingsInterest">Vextir</label>
+        <input id="userSavingsInterest" type="text" name="userSavingsInterest" value="" />
+        <span class="type">%</span>
+      </div>
+
     </div>
+
+    <button type="submit">Hvað verð ég lengi að safna?</button>
+
   </form>
 
 %include bottom
