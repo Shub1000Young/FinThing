@@ -1,6 +1,6 @@
 %include header
 
-<div>
+<div class="loanResults">
 
     <h2>Hagstæðasta sparnaðarleiðing</h2>
     <p>Að tímabilinu loknu muntu eiga {{savingsAmount}} kr. miðað við að þú hafir lagt inn á {{accountType}}.</p>
@@ -29,7 +29,11 @@
     </div>
 
     <h2>En hvað er eginlega best að gera?</h2>
-    <p>Þar sem {better} gefur meiri hagnað er best fyrir þig að [insertVariableNameHere]</p>
+    %if savingsAmount > maxprof:
+        <p>Þar sem að leggja peninginn fyrir gefur meiri hagnað er best fyrir þig að leggja aukatekjurnar inn á {{accountType}}.</p>
+    %else:
+        <p>Þar sem að greiða niður lánið gefur meiri hagnað er best fyrir þig að dæla öllum aukatekjunum í {{loan[0].name}}.</p>
+    %end
 </div>
 
 %include bottom

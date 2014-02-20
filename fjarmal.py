@@ -17,8 +17,7 @@ def form():
     userSavingsInterest = float( request.forms.get('userSavingsInterest') )
 
     result = markmid(goal, savingsAmount, userSavingsInterest)
-
-    return result
+    return template( 'savings', total = result[0], monthly = result[1], years = result[2], months = result[3] )
 
 @route('/lan', method='POST')
 def form():
@@ -70,9 +69,6 @@ def form():
 
     #Hérna ættum við að reikna hversu mikið er sparað
     savingsAmount, accountType = calculatesavings(monthlyAmount, totalPeriod)
-
-    if savingsAmount > maxprofit:
-        print maxprofit
 
     #Afhendum result sniðmátinu niðurstöðurnar úr evaluate og bestiReikningur
     return template( 'results', loan = res, maxprof = maxprofit, chartValues = chartValues,

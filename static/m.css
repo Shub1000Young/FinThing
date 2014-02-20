@@ -27,14 +27,16 @@ body {
     background: url(body-bg.png) 0 0 repeat;
 }
 
-h1 {
+h1,
+.loanResults h2 {
     text-shadow: 1px 1px 0 #fff;
     border-bottom: 1px solid #fff;
     padding: 0;
     margin: 10px 0 0;
 }
 
-h1:after{
+h1:after,
+.loanResults h2:after {
     content: "\00a0";
     border-bottom: 1px solid #ccc;
     display: block;
@@ -281,6 +283,9 @@ fieldset {
     left: -16px;
     top: 3px;
 }
+.error input {
+    background-color: #ffcfcf;
+}
 .radioinp {
     clear: both;
     padding: 0;
@@ -303,4 +308,10 @@ fieldset {
 
 .chartData {
     display: none;
+}
+.savingsres strong {
+    font-size: 2em;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 3px;
 }

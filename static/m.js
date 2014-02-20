@@ -69,8 +69,38 @@ var $ = jQuery,
 
     //Bindum smell á fjarlægja hnapp til þess að fjarlægja lán.
     $(bdy).on('click', '.rmloan', function (e) {
+        e.preventDefault();
         $(this).parents('fieldset').remove();
     });
+
+    //Komum í veg fyrir að formi sé submittað ef nauðsynlegir reitir eru ekki útfylltir
+    $('form').on('submit', function (e) {
+        var theForm = $(this),
+            canSubmit = true;
+
+        theForm.find('.req')
+            .each(function () {
+                var req = $(this),
+                    input = req.find('input');
+
+                if(input.val().length == 0)
+                {
+                    req.addClass('error');
+                    canSubmit = false;
+                }
+                else
+                {
+                    req.removeClass('error');
+                }
+              });
+
+        if (!canSubmit)
+        {
+            ;;;alert( 'Ertu viss um að þú hafir fyllt allt út?' );
+        }
+
+        return canSubmit;
+      });
 
     //Komum í veg fyrir að hægt sé að setja annað en tölustafi og punkt í textareitinn.
     $('.num').on('keydown', function(e) {
@@ -119,6 +149,7 @@ var $ = jQuery,
         });
     });
 
+    //Gögn fyrir línurit hefur verið prentað út sem HTML notum JS hérna til að "veiða" gögnin.
     var originalNode = $('.original li'),
         newlistNode = $('.newlist li'),
         periodNode = parseInt($('.period').text(), 10),
@@ -138,36 +169,40 @@ var $ = jQuery,
             originalData[i] = parseInt(originalNode.eq(i).text());
         }
 
-  var lineChartData = {
-      labels : periodData,
-      datasets : [
-        {
-          fillColor : "rgba(220,220,220,0.5)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          data : originalData
-        },
-        {
-          fillColor : "rgba(151,187,205,0.5)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          data : newlistData
-        }
-      ]
-    };
+    //Setjum upplýsingar línurits í lineChartData hlutinn
+    var lineChartData = {
+            labels : periodData,
+            datasets : [
+            {
+              fillColor : "rgba(220,220,220,0.5)",
+              strokeColor : "rgba(220,220,220,1)",
+              pointColor : "rgba(220,220,220,1)",
+              pointStrokeColor : "#fff",
+              data : originalData
+            },
+            {
+              fillColor : "rgba(151,187,205,0.5)",
+              strokeColor : "rgba(151,187,205,1)",
+              pointColor : "rgba(151,187,205,1)",
+              pointStrokeColor : "#fff",
+              data : newlistData
+            }
+            ]
+            };
+
+    //stillingahlutur fyrir línuritið
     var options = {
-    scaleOverride: true,
-    scaleSteps : periodNode,
-    //Number - The value jump in the hard coded scale
-    scaleStepWidth : m_paymnt,
-    //Number - The scale starting value
-    scaleStartValue : 0,
-    bezierCurve: false
+        scaleOverride: true,
+        scaleSteps : periodNode,
+        scaleStepWidth : m_paymnt,
+        scaleStartValue : 0,
+        bezierCurve: false
     }
-    //if convas.length > 0 then:
-  var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData, options);
-  //var canvasElm = $('#canvas').getContext("2d");
-  //var myLine = new Chart(canvasElm).Line(lineChartData);
+
+    //teiknum loks línuritið
+    var canvas = document.getElementById("canvas");
+    if (canvas)
+    {
+        new Chart(canvas.getContext("2d")).Line(lineChartData, options);
+    }
 })($);
