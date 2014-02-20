@@ -76,7 +76,10 @@ def evaluate(loans, months, amount):
 
     #return {"nafn" : loans[index].name, "sparnadur" : maxprof - totalSpent, "vextir" : interestprof}
 	if len(intermedLoans) != 0:
-		return [intermedLoans, loans[index].name, maxprof]
+		if len(loans) != 0:
+			return [intermedLoans, loans[index].name, maxprof]
+		else :
+			return intermedLoans
 
 	return [loans[index], maxprof]
 
