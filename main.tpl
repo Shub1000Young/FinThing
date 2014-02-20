@@ -171,8 +171,8 @@
       </div>
 
       <div class="txtinp hastype hashint">
-        <label for="xxx">Upphæð:</label>
-        <input id="xxx" type="text" name="name" value="" />
+        <label for="savingsAmount">Upphæð:</label>
+        <input id="savingsAmount" type="text" name="savingsAmount" value="" />
         <span class="type">kr.</span>
         <span class="hint"><span>mánaðarlega</span></span>
       </div>

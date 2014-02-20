@@ -1,5 +1,5 @@
 %include header
-<!-- this template is for testing purposes as is -->
+
 <div>
 
     <h2>Hagstæðasta sparnaðarleiðing</h2>

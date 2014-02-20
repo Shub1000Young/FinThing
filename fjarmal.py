@@ -4,15 +4,21 @@ from Loan import *
 from savings import *
 from avg_inflation import *
 from bestiReikningur import *
+from sparimarkmid import *
 
 @route('/')
 def index():
     return template('main')
 
-@route('/spara', method='POST')
+@route('/sparnadur', method='POST')
 def form():
-    amount = request.forms.getall('time')
-    return amount
+    goal = int( request.forms.get('savingsgoal') )
+    savingsAmount = int( request.forms.get('savingsAmount') )
+    userSavingsInterest = float( request.forms.get('userSavingsInterest') )
+
+    result = markmid(goal, savingsAmount, userSavingsInterest)
+
+    return result
 
 @route('/lan', method='POST')
 def form():
@@ -64,9 +70,6 @@ def form():
 
     #Hérna ættum við að reikna hversu mikið er sparað
     savingsAmount, accountType = calculatesavings(monthlyAmount, totalPeriod)
-
-    print maxprofit
-    print savingsAmount
 
     if savingsAmount > maxprofit:
         print maxprofit
