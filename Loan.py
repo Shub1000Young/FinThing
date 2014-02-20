@@ -79,7 +79,7 @@ def evaluate(loans, months, amount):
 		if len(loans) != 0:
 			return [intermedLoans, loans[index].name, maxprof]
 		else :
-			return intermedLoans
+			return [intermedLoans, totalTime]
 
 	return [loans[index], maxprof]
 
