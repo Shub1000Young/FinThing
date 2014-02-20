@@ -2,7 +2,7 @@
 
 <div class="loanResults">
 
-    <h2>Hagstæðasta sparnaðarleiðing</h2>
+    <h2>Hagstæðasta sparnaðarleiðin</h2>
     <p>Að tímabilinu loknu muntu eiga <span class="pnum">{{savingsAmount}}</span> kr. miðað við að þú hafir lagt inn á {{accountType}}.</p>
 
 
@@ -26,6 +26,7 @@
 
         <span class="period">{{period}}</span>
         <span class="m_paymnt">{{loan[0].m_paymnt}}</span>
+        <span class="principle">{{loan[0].principle}}</span>
     </div>
 
     <h2>En hvað er eginlega best að gera?</h2>

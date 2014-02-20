@@ -183,13 +183,14 @@ var $ = jQuery,
         newlistNode = $('.newlist li'),
         periodNode = parseInt($('.period').text(), 10),
         m_paymnt = parseInt($('.m_paymnt').text(), 10),
+        principle = parseInt($('.principle').text(), 10),
         periodData = [],
         originalData = [],
         newlistData = [];
 
         for (var i=0; i<periodNode; i++)
         {
-          periodData[i] = i + '';
+          periodData[i] = i;
         }
 
         for (var i=0; i<originalNode.length; i++)
@@ -222,9 +223,10 @@ var $ = jQuery,
     //stillingahlutur fyrir línuritið
     var options = {
         scaleOverride: true,
-        scaleSteps : periodNode,
-        scaleStepWidth : m_paymnt,
+        scaleSteps : 10,
+        scaleStepWidth : (principle / 10),
         scaleStartValue : 0,
+        pointDot : false,
         bezierCurve: false
     }
 

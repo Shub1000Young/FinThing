@@ -4,15 +4,15 @@ import savings
 def vaxtatrep(amount, term):
 
     ############################################ virkar ekki alveg
-   #trepreikn=savings.savings("vaxtaþrep",1,3.95,0)   #  reiknar alltaf med 4.25 % voxtum                                  
-   
+   #trepreikn=savings.savings("vaxtaþrep",1,3.95,0)   #  reiknar alltaf med 4.25 % voxtum
+
    ## if (5000000 <= trepreikn.balance < 20000000):           #
    ##     interest=4.25                                        #
    ## elif (20000000 <= trepreikn.balance < 75000000):        #
    ##     interest=4.55                                        #
    ## elif (trepreikn.balance >=75000000):                    #
    ##     interest=4.85
-   ## trepreikn.pay(amount)  
+   ## trepreikn.pay(amount)
    balance = 0
    for i in range(1,term):
     if (balance < 5000000):
@@ -20,7 +20,7 @@ def vaxtatrep(amount, term):
         trepreikn=savings.savings("vaxtaþrep",1,interest,balance)
         trepreikn.pay(amount)
         balance = trepreikn.balance
-        #print trepreikn.balance #testing	
+        #print trepreikn.balance #testing
     elif (5000000 <= balance < 20000000):           #
         interest=4.25
         trepreikn=savings.savings("vaxtaþrep",1,interest,balance)
@@ -39,10 +39,10 @@ def vaxtatrep(amount, term):
         trepreikn.pay(amount)
         balance = trepreikn.balance
         #print trepreikn.balance # testing
-    
+
     #print trepreikn.i_rate*100*12     #testing
     #print round (trepreikn.balance,0) #testing
-  
+
    return round(trepreikn.balance,0)                       #
 
 
@@ -82,12 +82,12 @@ def calculatesavings(amount, term):
     if (list[0]==x):                       #berum saman vid stokin 3 i listanum
         return (list[0],"Vaxtaþrep")        # og finnum nafn reiknings
     elif (list[1]==x):
-        return (list[1],"Fastvaxtareikningur")
+        return (list[1],"Fastvaxtareikning")
     elif (list[2]==x):
-        return (list[2],"Vaxtasproti")
+        return (list[2],"Vaxtasprota")
 
-    
+
 #testing
-#x,y = calculatesavings(10000,2)  
+#x,y = calculatesavings(10000,2)
 
 

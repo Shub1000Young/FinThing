@@ -143,7 +143,7 @@
 
     </fieldset>
 
-    <p class="center">Ertu með fleiri lán? <a class="addloan" href="/url">Já! Ég elska lán!</a></p>
+    <p class="right">Ertu með fleiri lán? <a class="addloan" href="/url">Já! Ég elska lán!</a></p>
 
     <input type="hidden" id="numloans" name="numloans" value="1" />
 

@@ -10,12 +10,5 @@ def markmid(total_amount, monthly_amount,i_rate):
 
     year=x/12  #finnum árafjölda
     month=x%12  # finnum fjölda mánaða.
-    #year=str(year)
-    #month=str(month)
-    #timi="það tekur "+year+" ár og "+month+" mánuðir að safna þessari upphæð"
     listi= total_amount, monthly_amount,year,month
     return listi
-#test
-#b=markmid(10000,1000,4.0)
-#print b
-

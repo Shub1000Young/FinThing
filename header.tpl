@@ -6,7 +6,8 @@
 
   <title></title>
   <script src="static/jquery-1.11.0.min.js"></script>
-  <script src="static/Chart.min.js"></script>
+  <script src="static/Chart.js"></script>
+  <!--script src="static/Chart.min.js"></script-->
   <script src="static/jquery.prettynumber.js"></script>
   <link href="static/m.css" rel="stylesheet" />
 </head>

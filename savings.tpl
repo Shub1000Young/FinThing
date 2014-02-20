@@ -10,7 +10,7 @@
 %end
 
 %monthsString = "mánuði"
-%if months % 10 == 1:
+%if months == 1:
 %monthsString = "mánuð"
 %end
 
@@ -24,12 +24,13 @@ og
 %end
 
 %if months > 0:
-<strong>{{months}}</strong> {{monthsString}}
+<strong>{{months}}</strong>{{monthsString}}
 %end
 
-að safna upp í <strong>{{total}}</strong> kr., miðað við að þú leggir fyrir <strong>{{monthly}}</strong> kr. í hverjum mánuði!
+að safna upp í <strong class="pnum">{{total}}</strong> kr., miðað við að þú leggir fyrir <strong class="pnum">{{monthly}}</strong> kr. í hverjum mánuði!
 </p>
 
+<img src="static/damoney.gif" alt="Peningar" />
 
 
 

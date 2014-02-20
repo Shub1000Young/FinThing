@@ -20,7 +20,7 @@ class Loan:
     self.term = term
 
     #if self.indexed: # Bæta við verðtryggingu
-    #i_rate += avg_inflation("1990-1","2013-1") #Fasti sem verður fall seinna
+    #    self.i_rate += avg_inflation("1990-01","2013-01") #Fasti sem verður fall seinna
 
     self.r = self.i_rate / self.comp_freq #vaxtaprósenta fyrir vaxtatímabil
     self.tot_loan = (((self.r)*self.principle)/(1-(1+(self.r))**-self.term))*self.term # heildar upphæð sem á eftir að borga
@@ -74,7 +74,6 @@ def evaluate(loans, months, amount):
 			maxprof = newtotal
 			index = i
 
-    #return {"nafn" : loans[index].name, "sparnadur" : maxprof - totalSpent, "vextir" : interestprof}
 	if len(intermedLoans) != 0:
 		if len(loans) != 0:
 			return [intermedLoans, loans[index].name, maxprof]

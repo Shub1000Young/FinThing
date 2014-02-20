@@ -305,8 +305,8 @@ select,
     margin-right: 30px;
 }
 
-.center {
-    text-align: center;
+.right {
+    text-align: right;
     padding: 20px;
 }
 
@@ -318,4 +318,12 @@ select,
     font-weight: bold;
     display: inline-block;
     margin: 0 3px;
+}
+
+img {
+    border: 1px solid #ccc;
+    padding: 1px;
+    margin: 0 auto;
+    width: 450px;
+    display: block;
 }

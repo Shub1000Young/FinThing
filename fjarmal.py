@@ -47,22 +47,24 @@ def form():
     term = request.forms.getall('term')
     comp_freq = request.forms.getall('compoundInt')
     indexed = request.forms.getall('indexed')
-    userInflation = request.forms.get('inflation')
+    userInflation = request.forms.get('inflation') + ""
     loans = []
 
     #we assume all the lists are equally long, iterate over them and create a list of loans
     for i in range(0, len(principle)):
-        loans.append( Loan( name[i], float(principle[i]), float(i_rate[i]), int(term[i]), int(comp_freq[i]), bool(indexed[i]) ) )
+        indexedBool = False if indexed[i] == "False" else True
+        loans.append( Loan( name[i], float(principle[i]), float(i_rate[i]), int(term[i]), int(comp_freq[i]), indexedBool ) )
+
+        lenOfUserinfl = len(userInflation)
         if loans[i].indexed:
-            if len(userInflation) > 0:
-                loans[i].i_rate += float(userInflation) / 100.0
+            if lenOfUserinfl > 0:
+                loans[i].i_rate += (float(userInflation) / 100.0)
             else:
                 loans[i].i_rate += avg_inflation(inflPeriodStartKey, inflPeriodEndKey) / 100.0
 
 
     #metum lánin sem slegin voru inn, evaluate skilar besta láninu
     res = evaluate(loans, totalPeriod, monthlyAmount)
-    loan,maxprofit = evaluate(loans, totalPeriod, monthlyAmount)
 
     #Fáum lista yfir greiðslur af upprunalega láninu og breyttu láni m.v. auka greiðslur.
     chartValues = overview(res[0], totalPeriod, monthlyAmount)
@@ -71,7 +73,8 @@ def form():
     savingsAmount, accountType = calculatesavings(monthlyAmount, totalPeriod)
 
     #Afhendum result sniðmátinu niðurstöðurnar úr evaluate og calculatesavings
-    return template( 'results', loan = res, maxprofit = int(maxprofit), chartValues = chartValues,
+    #return template( 'results', loan = res, maxprofit = int(maxprofit), chartValues = chartValues,
+    return template( 'results', loan = res, maxprofit = int(res[1]), chartValues = chartValues,
                         period = res[0].term, savingsAmount = int(savingsAmount), accountType = accountType)
 
 @route('/static/<filename>')
