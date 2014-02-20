@@ -105,7 +105,38 @@ var $ = jQuery,
     //Komum í veg fyrir að hægt sé að setja annað en tölustafi og punkt í textareitinn.
     $('.num').on('keydown', function(e) {
         var key = e.keyCode,
-            allowedKeys = [8, 18, 9, 35, 36, 37, 39, 18, 190, 16, 46];
+            //allowedKeys = [8, 18, 9, 35, 36, 37, 39, 18, 190, 16, 46];
+            allowedKeys = [
+                  8, // BACKSPACE
+                  9, // TAB
+                 18, //
+                 35, //
+                 36, //
+                 37, // LEFT
+                 39, // RIGHT
+                 46, // DEL
+                 48, // 0
+                 49, // 1
+                 50, // 2
+                 51, // 3
+                 52, // 4
+                 53, // 5
+                 54, // 6
+                 55, // 7
+                 56, // 8
+                 57, // 9
+                 96, // 0 (numpad)
+                 97, // 1 (numpad)
+                 98, // 2 (numpad)
+                 99, // 3 (numpad)
+                100, // 4 (numpad)
+                101, // 5 (numpad)
+                102, // 6 (numpad)
+                103, // 7 (numpad)
+                104, // 8 (numpad)
+                105, // 9 (numpad)
+                190  // .
+              ];
 
         if( allowedKeys.indexOf( key ) == -1 && isNaN( String.fromCharCode( key ) ) )
         {
@@ -113,10 +144,8 @@ var $ = jQuery,
         }
     });
 
-    $('.num input').on('keyup', function (e) {
-        //$(this).val($(this).val().toString().prettynum());
-        ;;;window.console&&console.log( [$(this).val().toString()] );
-      });
+    //Prettyfy tölur
+    $('.pnum').prettynumber();
 
     //Bindum smelli á plús/mínus hnappa til að hækka/lækka gildi í tölureitum.
     $('.num').each(function() {

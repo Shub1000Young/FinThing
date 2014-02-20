@@ -67,12 +67,12 @@ def form():
     #Fáum lista yfir greiðslur af upprunalega láninu og breyttu láni m.v. auka greiðslur.
     chartValues = overview(res[0], totalPeriod, monthlyAmount)
 
-    #Hérna ættum við að reikna hversu mikið er sparað
+    #Reiknum hversu mikið er sparað
     savingsAmount, accountType = calculatesavings(monthlyAmount, totalPeriod)
 
-    #Afhendum result sniðmátinu niðurstöðurnar úr evaluate og bestiReikningur
-    return template( 'results', loan = res, maxprof = maxprofit, chartValues = chartValues,
-                        period = res[0].term, savingsAmount = savingsAmount, accountType = accountType)
+    #Afhendum result sniðmátinu niðurstöðurnar úr evaluate og calculatesavings
+    return template( 'results', loan = res, maxprofit = int(maxprofit), chartValues = chartValues,
+                        period = res[0].term, savingsAmount = int(savingsAmount), accountType = accountType)
 
 @route('/static/<filename>')
 def server_static(filename):

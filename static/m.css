@@ -34,7 +34,7 @@ h1,
     padding: 0;
     margin: 10px 0 0;
 }
-
+form:after,
 h1:after,
 .loanResults h2:after {
     content: "\00a0";
@@ -49,10 +49,13 @@ h1:after,
     display: inline-block;
 }
 
-.loan {
+fieldset {
     clear: both;
     position: relative;
+    border: 0;
     border-bottom: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
     padding: 30px 0;
 }
 .rmloan {
@@ -77,12 +80,15 @@ button,
 
 form {
     margin: 30px 0 60px;
+    border-bottom: 1px solid #fff;
 }
+
 button {
+    background-color: #32894f;
     font-size: 1em;
-    clear: both;
     display: block;
     cursor: pointer;
+    clear: both;
 }
 
 .row {
@@ -141,12 +147,6 @@ select,
     outline: 0;
 }
 
-
-fieldset {
-    border: 0;
-    padding: 0;
-    margin: 0;
-}
 .type,
 .txtinp label {
     background-color: #f2f2f2;
@@ -188,6 +188,9 @@ fieldset {
     width: 19px;
     text-align: center;
     overflow: hidden;
+    -webkit-box-shadow: inset 3px 3px 25px 0px rgba(0,0,0, .5);
+    box-shadow:         inset 3px 3px 25px 0px rgba(0,0,0, .5);
+    text-shadow: 1px 1px 0 rgba(0,0,0, .5);
 }
 .plus:before,
 .minus:before {
@@ -290,6 +293,7 @@ fieldset {
     clear: both;
     padding: 0;
     margin: 0;
+    border: 0;
 }
 .radioinp ul {
     padding: 0;

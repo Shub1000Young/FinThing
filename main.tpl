@@ -34,8 +34,6 @@
 
     </fieldset>
 
-    <hr />
-
     <fieldset class="inflation">
       <h2>Verðbólgutímabil</h2>
       <p>Það eina sem við gerum er að taka meðaltal af verðbólgunni fyrir tíambilið sem þú velur.</p>
@@ -87,9 +85,6 @@
 
     </fieldset>
 
-    <hr />
-
-
     <fieldset class="loan">
 
       <h2>Lán</h2>
@@ -121,7 +116,7 @@
           <span class="hint"><span>í mánuðum</span></span>
         </div>
 
-        <div class="txtinp num hasops w30">
+        <div class="txtinp num hasops w30 req">
           <label for="i_rate">Vextir</label>
           <span class="minus">-</span>
           <input id="i_rate" type="text" name="i_rate" value="1" />
@@ -173,7 +168,7 @@
         <label for="savingsAmount">Upphæð:</label>
         <input id="savingsAmount" type="text" name="savingsAmount" value="" />
         <span class="type">kr.</span>
-        <span class="hint"><span>mánaðarlega</span></span>
+        <span class="hint"><span>mánaðarleg</span></span>
       </div>
 
       <div class="txtinp num hastyp w30 req">
