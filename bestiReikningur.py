@@ -2,28 +2,20 @@
 #coding=UTF-8
 import savings
 def vaxtatrep(amount, term):
-   interest=3.95  ############################################ virkar ekki alveg
-   trepreikn=savings.savings("vaxtaþrep",1,interest,0)   #  reiknar alltaf med 4.25 % voxtum
-                                                            # nema nu tegar se heill hellingur inna reikn..
-   ## if (5000000 <= trepreikn.balance < 20000000):           #
-   ##     interest=4.25                                        #
-   ## elif (20000000 <= trepreikn.balance < 75000000):        #
-   ##     interest=4.55                                        #
-   ## elif (trepreikn.balance >=75000000):                    #
-   ##     interest=4.85
-   ## trepreikn.pay(amount)                                    #
-   for i in range (1,term):
-    if (5000000 <= trepreikn.balance < 20000000):           #
-        interest=4.25                                        #
-    elif (20000000 <= trepreikn.balance < 75000000):        #
-        interest=4.55                                        #
-    elif (trepreikn.balance >=75000000):                    #
-        interest=4.85
+    interest=3.95
+    trepreikn=savings.savings("vaxtaþrep",1,interest,0)
+    for i in range (0,term):
+        if (5000000 <= trepreikn.balance < 20000000):
+            interest=4.25
+        elif (20000000 <= trepreikn.balance < 75000000):
+            interest=4.55
+        elif (trepreikn.balance >=75000000):
+            interest=4.85
+        trepreikn.i_rate = (interest/100/12)
+        trepreikn.pay(amount)
+        #print trepreikn.balance
+    return round(trepreikn.balance,0)
 
-    trepreikn.pay(amount/term)
-
-   return round(trepreikn.balance,0)                       #
-#######################################################################
 
 def fastvaxtareikningur(amount, term): # aetti ad vera rett
     interest=0
@@ -51,7 +43,7 @@ def calculatesavings(amount, term):
     list.append(vaxtatrep(amount, term))
     list.append(fastvaxtareikningur(amount, term))
     list.append(vaxtasproti(amount, term))
-
+   # print list
     x = max(list)  # finnum maxid i listanum
     if (list[0]==x):                       #berum saman vid stokin 3 i listanum
         return (list[0],"Vaxtaþrep")        # og finnum nafn reiknings
@@ -60,7 +52,8 @@ def calculatesavings(amount, term):
     elif (list[2]==x):
         return (list[2],"Vaxtasproti")
 
+
 #daemi um notkun
-#x,y = calculatesavings(10000,12)
+#x,y = calculatesavings(1000000,12)
 #print x,y
 
